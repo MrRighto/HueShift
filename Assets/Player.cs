@@ -34,25 +34,46 @@ public class Player : MonoBehaviour
 
     }
 
+    private bool MoveTest(Vector3 start, Vector3 end)
+    {
+        //Check For wall collision before moving player
+        //bool hit = Physics2D.Linecast(start, end);
+
+        if (Physics2D.Linecast(start, end) == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;   
+        }
+    }
+
+
     private IEnumerator MovePlayer(Vector3 direction)
     {
         isMoving = true;
 
         float elapsedTime = 0;
 
+        
+
         origPos = transform.position;
         targetPos = origPos + (direction * 8);
 
 
-        while(elapsedTime < timeToMove)
+            if (MoveTest(origPos,targetPos) == false)
         {
-            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            while (elapsedTime < timeToMove)
+            {
+                transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.position = targetPos;
         }
-
-        transform.position = targetPos;
-
+        
         isMoving = false;
     }
 }
