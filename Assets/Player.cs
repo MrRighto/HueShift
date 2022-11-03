@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         //Check For wall collision before moving player
         //bool hit = Physics2D.Linecast(start, end);
 
-        if (Physics2D.Linecast(start, end) == false)
+        if (Physics2D.Linecast(start, end) == true)
         {
             return true;
         }
