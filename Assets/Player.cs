@@ -74,6 +74,15 @@ public class Player : MonoBehaviour
             transform.position = targetPos;
         }
         
+        /*
+        if targetPos == //Colortile
+        {
+            if color is red
+               color = green
+
+        }
+        */
+
         isMoving = false;
     }
 }
