@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour
 {
     private bool isMoving;
     private Vector3 origPos, targetPos;
+    public Vector3Int tilePos;
+    private Sprite curTile;
     private float timeToMove = 0.2f;
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void UpdateTile(Vector3 playerPos)
+    {
+        tilePos = Vector3Int.FloorToInt(playerPos);
+        curTile = Tilemap.GetSprite(tilePos);
+    }
+
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
@@ -73,7 +82,7 @@ public class Player : MonoBehaviour
 
             transform.position = targetPos;
         }
-        
+
         /*
         if targetPos == //Colortile
         {
@@ -82,6 +91,8 @@ public class Player : MonoBehaviour
 
         }
         */
+
+        
 
         isMoving = false;
     }
