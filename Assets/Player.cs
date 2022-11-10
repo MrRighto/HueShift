@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public Vector3Int tilePos;
     private Sprite curTile;
     private float timeToMove = 0.2f;
+    public Grid Environment;
+    public Tilemap ColorTiles;
+    public Vector3 Displace;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,11 +55,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void UpdateTile(Vector3 playerPos)
-    {
-        tilePos = Vector3Int.FloorToInt(playerPos);
-        curTile = Tilemap.GetSprite(tilePos);
-    }
+        private void UpdateTile(Vector3 playerPos)
+        {
+            Displace = new Vector3(-4f, -4f, 0f);
+            tilePos = Vector3Int.FloorToInt((playerPos + Displace)/8);
+            curTile = ColorTiles.GetSprite(tilePos);
+
+            print(curTile);
+            //print(tilePos);
+        }
 
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -91,8 +98,8 @@ public class Player : MonoBehaviour
 
         }
         */
-
-        
+        origPos = transform.position;
+        UpdateTile(origPos);
 
         isMoving = false;
     }
