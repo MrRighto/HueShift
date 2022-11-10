@@ -8,15 +8,18 @@ public class Player : MonoBehaviour
     private bool isMoving;
     private Vector3 origPos, targetPos;
     public Vector3Int tilePos;
-    private Sprite curTile;
+    private Tile curTile;
     private float timeToMove = 0.2f;
     public Grid Environment;
     public Tilemap ColorTiles;
     public Vector3 Displace;
+    public Tile RedTile;
+    public Tile GreenTile;
     // Start is called before the first frame update
     void Start()
     {
-        
+        var RedTile = Resources.Load<Tile>("Assets/Resources/TileRed.asset");
+        var GreenTile = Resources.Load<Tile>("Assets/Resources/TileGreen.asset");
     }
 
     // Update is called once per frame
@@ -59,10 +62,18 @@ public class Player : MonoBehaviour
         {
             Displace = new Vector3(-4f, -4f, 0f);
             tilePos = Vector3Int.FloorToInt((playerPos + Displace)/8);
-            curTile = ColorTiles.GetSprite(tilePos);
+            curTile = ColorTiles.GetTile<Tile>(tilePos);
 
-            print(curTile);
+            //print(curTile);
             //print(tilePos);
+        if (curTile == RedTile)
+        {
+        print("Red");
+        }
+    else if (curTile == GreenTile)
+        {
+        print("Green");
+        }
         }
 
 
