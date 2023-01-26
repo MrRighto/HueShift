@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Vector3 Displace;
     public Tile RedTile;
     public Tile GreenTile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,17 +64,39 @@ public class Player : MonoBehaviour
             Displace = new Vector3(-4f, -4f, 0f);
             tilePos = Vector3Int.FloorToInt((playerPos + Displace)/8);
             curTile = ColorTiles.GetTile<Tile>(tilePos);
+            BoundsInt bounds = ColorTiles.cellBounds;
+        TileBase[] allTiles = ColorTiles.GetTilesBlock(bounds);
+        //TileBase[] tileArray = ColorTiles.GetTilesBlock(bounds);
 
-            //print(curTile);
-            //print(tilePos);
+        print(allTiles);
+        //print(curTile);
+        //print(tilePos);
         if (curTile == RedTile)
-        {
-        print("Red");
+            {
+
+            //print("Red");
+        
+            ColorTiles.SetTile(tilePos, GreenTile);
+          
+            /*
+            
+            foreach (var position in bounds.allPositionsWithin)
+            {
+                if  = GreenTile)
+                {
+                    print("you win");
+                }
+            }
+            */
+            //if 
         }
-    else if (curTile == GreenTile)
-        {
-        print("Green");
-        }
+        else if (curTile == GreenTile)
+            {
+            //print("Green");
+
+            ColorTiles.SetTile(tilePos, RedTile);
+            }
+
         }
 
 
