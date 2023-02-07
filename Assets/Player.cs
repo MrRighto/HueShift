@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     {
         var RedTile = Resources.Load<Tile>("Assets/Resources/TileRed.asset");
         var GreenTile = Resources.Load<Tile>("Assets/Resources/TileGreen.asset");
+        int gridSizeX = 
+
+        
     }
 
     // Update is called once per frame
